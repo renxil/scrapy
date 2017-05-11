@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for tieba_bili project
+# Scrapy settings for tiebacommon project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,39 +9,35 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-FEED_EXPORT_ENCODING = 'utf-8'
-BOT_NAME = 'tieba_bili'
+BOT_NAME = 'tiebacommon'
 
-SPIDER_MODULES = ['tieba_bili.spiders']
-NEWSPIDER_MODULE = 'tieba_bili.spiders'
-
-#禁止cookies,防止被ban
-COOKIES_ENABLED = False
-COOKIES_ENABLES = False
-
-
-#设置Pipeline,此处实现数据写入文件
-
-#ITEM_PIPELINES = {
-#    'tieba_bili.pipelines.TiebaBiliPipeline': 300,
-#}
-
-#设置爬虫爬取的最大深度
-DEPTH_LIMIT=100
-
-
-#取消默认的useragent,使用新的useragent
-#DOWNLOADER_MIDDLEWARES = {
-#        'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
-#        'tieba_bili.spiders.rotate_useragent.RotateUserAgentMiddleware' :400
-    #}
+SPIDER_MODULES = ['tiebacommon.spiders']
+NEWSPIDER_MODULE = 'tiebacommon.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tieba_bili (+http://www.yourdomain.com)'
+#USER_AGENT = 'tiebacommon (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+
+START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7'  
+#START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7'  
+#START_URL = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6'  
+TOTAL_DAYS = "20"  
+  
+#ITEM_PIPELINES = ['tieba.pipelines.MySQLDBPipeline']  
+  
+MySQL_SERVER = "localhost"  
+MySQL_SERVER_PORT = 3306  
+MySQL_SERVER_DB = "tieba"  
+MySQL_SERVER_USER = "root"  
+MySQL_SERVER_PWD = "root123"  
+  
+  
+  
+# Crawl responsibly by identifying yourself (and your website) on the user-agent  
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0'  
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -69,13 +65,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'tieba_bili.middlewares.TiebaBiliSpiderMiddleware': 543,
+#    'tiebacommon.middlewares.TiebacommonSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'tieba_bili.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'tiebacommon.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -86,9 +82,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'tieba_bili.pipelines.TiebaBiliPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'tiebacommon.pipelines.TiebacommonPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
