@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-#coding=utf-8
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.linkextractors.sgml import SgmlLinkExtractor 
@@ -18,7 +16,12 @@ class TiebaSpider(CrawlSpider):
     #这里假设20天内主题帖数量<1000*50,可以根据实际调整或获取页面上每个主题帖的时间来计算出具体需要多少页！
     for x in range(0, 2):
         start_urls.append(settings.START_URL + "&pn=" + str((x+1) * 50))
-    rules = [Rule(LinkExtractor(allow=['/p/\d+']), 'parse_subject_shanghai')]#这里只解析主题贴
+    #rules = [Rule(LinkExtractor(allow=['/p/\d+']), 'parse_subject_shanghai')]#这里只解析主题贴
+    rules = [ 
+        #Rule(LinkExtractor(allow=('tab=good', ))),
+        #Rule(LinkExtractor(allow=('good', )), callback='parse_content'),
+        Rule(LinkExtractor(allow=['/p/\d+']), callback='parse_subject_shanghai')
+   ] 
     
     
     def parse_subject_shanghai(self, response):

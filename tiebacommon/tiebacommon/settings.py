@@ -19,9 +19,9 @@ NEWSPIDER_MODULE = 'tiebacommon.spiders'
 #USER_AGENT = 'tiebacommon (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False 
 
-START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7'  
+START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=上海'
 #START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7'  
 #START_URL = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6'  
 TOTAL_DAYS = "20"  
@@ -32,7 +32,7 @@ MySQL_SERVER = "localhost"
 MySQL_SERVER_PORT = 3306  
 MySQL_SERVER_DB = "tieba"  
 MySQL_SERVER_USER = "root"  
-MySQL_SERVER_PWD = "root123"  
+MySQL_SERVER_PWD = ""  
   
   
   

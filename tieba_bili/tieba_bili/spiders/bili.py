@@ -20,7 +20,7 @@ class BiliSpider(CrawlSpider):
             item['url'] = response.url
             item['title'] = sel.xpath('div/div[2]/div[1]/div[1]/a/text()').extract()
             item['link'] = sel.xpath('div/div[2]/div[1]/div[1]/a/@href').extract()
-            item['desc'] = sel.xpath('div/div[2]/div[2]/div[1]/div[1]').extract()
+            item['desc'] = sel.xpath('div/div[2]/div[2]/div[1]/div[1]/text()').extract()
             item['author'] = sel.xpath('div/div[2]/div[1]/div[2]/span[1]/span[1]/a/text()').extract()
 
             #self.log('xxxxxxxxxxx url: %s' % item['url'])

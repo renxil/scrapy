@@ -22,9 +22,9 @@ COOKIES_ENABLES = False
 
 #设置Pipeline,此处实现数据写入文件
 
-#ITEM_PIPELINES = {
-#    'tieba_bili.pipelines.TiebaBiliPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'tieba_bili.pipelines.TiebaBiliPipeline': 300,
+}
 
 #设置爬虫爬取的最大深度
 DEPTH_LIMIT=100
