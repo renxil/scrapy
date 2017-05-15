@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'tiebacommon.spiders'
 #USER_AGENT = 'tiebacommon (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False 
+ROBOTSTXT_OBEY = True
 
 START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=上海'
 #START_URL  = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E4%B8%8A%E6%B5%B7'  
@@ -37,7 +37,7 @@ MySQL_SERVER_PWD = ""
   
   
 # Crawl responsibly by identifying yourself (and your website) on the user-agent  
-USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0'  
+#USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; rv:35.0) Gecko/20100101 Firefox/35.0'  
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
