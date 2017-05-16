@@ -14,12 +14,10 @@ class TiebaSpider(CrawlSpider):
     allowed_domains = ['tieba.baidu.com'] #备注：那些带有推广的帖子现在看起来都不是这个域名下的，所以主题文章已经过滤了推广贴
     start_urls = [settings.START_URL]
     #这里假设20天内主题帖数量<1000*50,可以根据实际调整或获取页面上每个主题帖的时间来计算出具体需要多少页！
-    for x in range(0, 2):
-        start_urls.append(settings.START_URL + "&pn=" + str((x+1) * 50))
+#    for x in range(0, 2):
+#        start_urls.append(settings.START_URL + "&pn=" + str((x+1) * 50))
     #rules = [Rule(LinkExtractor(allow=['/p/\d+']), 'parse_subject_shanghai')]#这里只解析主题贴
     rules = [ 
-        #Rule(LinkExtractor(allow=('tab=good', ))),
-        #Rule(LinkExtractor(allow=('good', )), callback='parse_content'),
         Rule(LinkExtractor(allow=['/p/\d+']), callback='parse_subject_shanghai')
    ] 
     
@@ -58,6 +56,8 @@ class TiebaSpider(CrawlSpider):
             
             totalCommentPage =  int(response.xpath("//div[@id='thread_theme_5']/div[1]/ul/li[2]/span[2]/text()").extract()[0])
             for x in range(2, totalCommentPage):
+                if (x >4):
+                    pass
                 url = torrent['url'] + ("?pn=%s"  % x)
                 yield scrapy.Request(url=url, callback=self.parse_comments_shanghai)
             
@@ -73,7 +73,8 @@ class TiebaSpider(CrawlSpider):
             print response
             hxs = HtmlXPathSelector(response)
             print "---------------------------------------------------"
-            j_p_postlist = hxs.select("//div[@id='j_p_postlist']").select(".//div[@class='l_post l_post_bright ']")
+            #j_p_postlist = hxs.select("//div[@id='j_p_postlist']").select(".//div[@class='l_post l_post_bright ']")
+            j_p_postlist = hxs.select("//div[@id='j_p_postlist']").select(".//div[@class='l_post j_l_post l_post_bright ']")
             print "----------------------------------------got it",j_p_postlist
             for childNode in j_p_postlist:
                 print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
